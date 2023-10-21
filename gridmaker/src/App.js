@@ -41,6 +41,7 @@ function App() {
   
   return (
     <div>
+      <AddRow onAddRow={handleAddRow} />
       <table className="table">
         <tbody>
           {tableData.map((row, rowIndex) => (
@@ -52,7 +53,6 @@ function App() {
           ))}
         </tbody>
       </table>
-      <AddRow onAddRow={handleAddRow} />
     </div>
   );
 }
