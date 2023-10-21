@@ -88,3 +88,30 @@ body {
 .game-info {
   margin-left: 20px;
 }
+
+/* App.css */
+
+/* Style for the table */
+.table {
+  border-collapse: collapse;
+  margin: 20px;
+}
+
+/* Style for table header */
+.table th {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+/* Style for table rows */
+.table tr {
+  border: 1px solid #ccc;
+}
+
+/* Style for table cells */
+.table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
