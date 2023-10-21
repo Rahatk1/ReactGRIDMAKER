@@ -26,30 +26,40 @@
 // export default App;
 
 
-import React, { useState } from 'react'; //imports necessary stuff from react
-import './styles.css'; // imports CSS file
-import AddRow from './addRow'; // imports AddRow component
+import React, { useState } from 'react'; // Import the necessary stuff and below the components from teh files
+import './styles.css'; 
+import AddRow from './addRow'; 
+import AddCol from './addCol';
 
-function App() 
-{
-  const [tableData, setTableData] = useState([]); //variable tableData holds grid (initially empty) & useState creates/manages state
+function App() {
+  const [tableData, setTableData] = useState([]); // a state variable tableData (initialized as empty array)
 
-  const handleAddRow = () => //func
-  {
-    setTableData([...tableData, ['square']]); //updates grid and adds a new sq everyime the button is clicked
+  const handleAddRow = () => { //called when addrow is clicked
+    setTableData([...tableData, Array(tableData[0] ? tableData[0].length : 1).fill('square')]);
+    // adding new row (anotha array filled with 'square' vals)
+    // num of cells matches num of cells in the new row but if there are no cells in the first place, u just add one
   };
 
+  const handleAddCol = () => { //called when addcol is clicked
+    const newTableData = tableData.map(row => [...row, 'square']);
+    // new array where ur adding a 'square' value to each row aka a column
+    setTableData(newTableData);
+    // Update tableData state so it now includes the new column
+  };
 
-  
   return (
     <div>
       <AddRow onAddRow={handleAddRow} />
+      <AddCol onAddCol={handleAddCol} />
       <table className="table">
-        <tbody> 
-          {tableData.map((row, rowIndex) => ( //iterates thru each row, maps each row to JSX element
+        <tbody>
+          {tableData.map((row, rowIndex) => (
+            // Map through the tableData array to create rows. also for the above lines ur basically rendering the components & passing handleAddXYZ as a prop
             <tr key={rowIndex}>
-              {row.map((cell, cellIndex) => ( //iterates thru each cell (?), maps each cell to JSX element too
+              {row.map((cell, cellIndex) => (
+                // Map thru each row to create cells
                 <td key={cellIndex} className={cell}></td>
+                // not rlly sure what this does but web site gives a bunch of errors without it
               ))}
             </tr>
           ))}
@@ -59,4 +69,4 @@ function App()
   );
 }
 
-export default App;
+export default App; // Exportapp comp
