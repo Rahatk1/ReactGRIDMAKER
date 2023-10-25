@@ -30,6 +30,7 @@ import React, { useState } from 'react'; // Import the necessary stuff and below
 import './styles.css'; 
 import AddRow from './addRow'; 
 import AddCol from './addCol';
+import RemoveRow from './removeRow';
 
 function App() {
   const [tableData, setTableData] = useState([]); // a state variable tableData (initialized as empty array)
@@ -47,10 +48,21 @@ function App() {
     // Update tableData state so it now includes the new column
   };
 
+  const handleRemoveRow = () => //new func
+  { 
+    if (tableData.length > 0) //checks if there are any rows in the grid to remove in the first place
+    {
+      const newTableData = [...tableData]; //... is called the spread operator, in javascript it copies an array into another and here it does that and makes a new table element so u dont modify the og state
+      newTableData.pop(); //like pop in a linked list, this pop also removes the last but from the new array we created (which is a copy from the og)
+      setTableData(newTableData); //this updates state of tabledata with new array which now has the last row remoed
+    }
+  };
+
   return (
     <div>
       <AddRow onAddRow={handleAddRow} />
       <AddCol onAddCol={handleAddCol} />
+      <RemoveRow onRemoveRow={handleRemoveRow} />
       <table className="table">
         <tbody>
           {tableData.map((row, rowIndex) => (
