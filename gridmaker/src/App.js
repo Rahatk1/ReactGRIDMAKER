@@ -1,73 +1,58 @@
-// import React, { useState } from 'react'; ///imports modules needed fromn react and
-// import AddRow from './addRow'; // import AddRow
-
-// function App() {
-//   const [grid, setGrid] = useState([[]]); //empty grid? empty array?
-
-//   return (
-//     <div className="App">
-//       <AddRow grid={grid} setGrid={setGrid} /> {/* passes grid and setGrid to AddRow so u can add*/}
-//       <table>
-//         <tbody>
-//           {grid.map((row, rowIndex) => ( //loop thru the rwos and then tr is new row 
-//             <tr key={rowIndex}>
-//               {row.map((cell, cellIndex) => ( //loop thru cells in that row
-//                 <td key={cellIndex}>{cell}</td>
-//               ))}
-//             </tr>
-//           ))}
-//         </tbody>
-//       </table>
-//     </div>
-//   );
-// }
-
-
-// export default App;
-
-
 import React, { useState } from 'react'; // Import the necessary stuff and below the components from teh files
-import './styles.css'; 
-import AddRow from './addRow'; 
+import './styles.css';
+import AddRow from './addRow';
 import AddCol from './addCol';
 import RemoveRow from './removeRow';
-import RemoveCol from './removeCol'; 
+import RemoveCol from './removeCol';
 
-function App() {
+function App() 
+{
   const [tableData, setTableData] = useState([]); // a state variable tableData (initialized as empty array)
 
-  const handleAddRow = () => { //called when addrow is clicked
-    setTableData([...tableData, Array(tableData[0] ? tableData[0].length : 1).fill('square')]);
-    // adding new row (anotha array filled with 'square' vals)
-    // num of cells matches num of cells in the new row but if there are no cells in the first place, u just add one
-  };
-
-  const handleAddCol = () => { //called when addcol is clicked
-    const newTableData = tableData.map(row => [...row, 'square']);
-    // new array where ur adding a 'square' value to each row aka a column
-    setTableData(newTableData);
-    // Update tableData state so it now includes the new column
-  };
-
-  const handleRemoveRow = () => //new func
+  const handleAddRow = () => //called when addrow is clicked, same explanation for the rest so I won't repeat
   { 
-    if (tableData.length > 0) //checks if there are any rows in the grid to remove in the first place
+    if (tableData.length === 0) //ADDED THIS ONE TODAY - this checks if tabledata is empty like there are no rows yet
+    { 
+      setTableData([['square']]);
+    } 
+    
+    else //if ur here that means there ARE rows in the grid
     {
-      const newTableData = [...tableData]; //... is called the spread operator, in javascript it copies an array into another and here it does that and makes a new table element so u dont modify the og state
-      newTableData.pop(); //like pop in a linked list, this pop also removes the last but from the new array we created (which is a copy from the og)
-      setTableData(newTableData); //this updates state of tabledata with new array which now has the last row remoed
+      setTableData([...tableData, Array(tableData[0].length).fill('square')]); 
+      //tableData[0].length gets number of cells int he first row of the grid
+      //then blah blah.fill('square') creates array with same amount of cells as the first row & fills them all with 'square'
     }
   };
 
-  const handleRemoveCol = () => //new func
+  const handleAddCol = () => 
   {
-    if (tableData.length > 0) //reasoning above
+    const newTableData = tableData.map(row => [...row, 'square']); // new array where ur adding a 'square' value to each row aka a column
+    setTableData(newTableData); //Update tableData state so it now includes the new column
+  };
+
+  const handleRemoveRow = () => 
+  {
+    if (tableData.length > 0) //checks if there are any rows in the grid to remove in the first place, if there are then:
     {
-      const newTableData = tableData.map(row => row.slice(0, -1)); //create new like before, use map to iterate thru the rows, row.slice(0, -1) removes rightmost cell from each row so like a column
-      setTableData(newTableData); //reasoning above but this time update state with last column removed
+      const newTableData = tableData.slice(0, -1); //slice(0, -1) removes the last item aka the last row) from the array and puts it in newTableData
+      setTableData(newTableData); //this updates state of tabledata with new array (newTableData) which now has the last row remoed
     }
   };
 
+  const handleRemoveCol = () => 
+  {
+    if (tableData[0].length > 1) //are there more than one column in the table rn? if yes then enter
+    {
+      const newTableData = tableData.map(row => [...row.slice(0, -1)]); //new table data same expl as the rest, .map iterates thru the rows, spread operator with the slice creates new row with the last cell removed aka removes a column
+      setTableData(newTableData); //update
+    } 
+    
+    else //if there is only one column left to remove in the grid, just update it so it goes back to an empty grid! this fixed the addRow edge case
+    {
+      setTableData([]); //update state to empty grid
+    }
+  };
+  
   return (
     <div>
       <AddRow onAddRow={handleAddRow} />
