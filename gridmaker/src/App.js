@@ -31,6 +31,7 @@ import './styles.css';
 import AddRow from './addRow'; 
 import AddCol from './addCol';
 import RemoveRow from './removeRow';
+import RemoveCol from './removeCol'; 
 
 function App() {
   const [tableData, setTableData] = useState([]); // a state variable tableData (initialized as empty array)
@@ -58,11 +59,21 @@ function App() {
     }
   };
 
+  const handleRemoveCol = () => //new func
+  {
+    if (tableData.length > 0) //reasoning above
+    {
+      const newTableData = tableData.map(row => row.slice(0, -1)); //create new like before, use map to iterate thru the rows, row.slice(0, -1) removes rightmost cell from each row so like a column
+      setTableData(newTableData); //reasoning above but this time update state with last column removed
+    }
+  };
+
   return (
     <div>
       <AddRow onAddRow={handleAddRow} />
       <AddCol onAddCol={handleAddCol} />
       <RemoveRow onRemoveRow={handleRemoveRow} />
+      <RemoveCol onRemoveCol={handleRemoveCol} />
       <table className="table">
         <tbody>
           {tableData.map((row, rowIndex) => (
