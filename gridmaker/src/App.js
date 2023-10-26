@@ -12,7 +12,7 @@ function App()
 
 
   // i think i should use state for the color selection
-  const [colorChoice, setColor] = useState("#bada55");
+  const [colorChoice, setColor] = useState("#FFFFFF");
 
 
 
@@ -60,27 +60,19 @@ function App()
     }
   };
 
-  const handleSelectColor = () =>
+  const handleSelectColor = (event) =>
   {
-    // to be handle to have a prop be sent to handle the choice the user picks
-    // console.log(data.data);
-    // let colorChoice = setColor;
-    // console.log(colorChoice);
-    // let colorChoice = "red";
-
-    // console.log(event.target.value)
-    console.log(colorChoice);
+    setColor(event.target.value)
+    console.log(colorChoice, typeof(colorChoice), " inside the handler");
   } 
   
-  console.log("colorPicker", colorChoice);
-
   return (
     <div>
       <AddRow onAddRow={handleAddRow} />
       <AddCol onAddCol={handleAddCol} />
       <RemoveRow onRemoveRow={handleRemoveRow} />
       <RemoveCol onRemoveCol={handleRemoveCol} />
-      <SelectColor value={colorChoice} onChange={e => setColor(e.target.value)}/>
+      <SelectColor value={colorChoice} onChange={handleSelectColor}/>
       <table className="table">
         <tbody>
           {tableData.map((row, rowIndex) => (
