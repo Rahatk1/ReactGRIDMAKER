@@ -1,6 +1,6 @@
 import React from "react";
 
-function SelectColor(props) {
+function RetrieveColor(props) {
 
     return (
         <div>
@@ -9,4 +9,4 @@ function SelectColor(props) {
     )
 }
 
-export default SelectColor;
+export default RetrieveColor;
