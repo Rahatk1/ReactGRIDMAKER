@@ -4,6 +4,7 @@ import AddRow from './addRow';
 import AddCol from './addCol';
 import RemoveRow from './removeRow';
 import RemoveCol from './removeCol';
+import SelectColor from './selectColor';
 
 function App() 
 {
@@ -52,6 +53,12 @@ function App()
       setTableData([]); //update state to empty grid
     }
   };
+
+  const handleSelectColor = () =>
+  {
+    // to be handle to have a prop be sent to handle the choice the user picks
+  } 
+  
   
   return (
     <div>
@@ -59,6 +66,7 @@ function App()
       <AddCol onAddCol={handleAddCol} />
       <RemoveRow onRemoveRow={handleRemoveRow} />
       <RemoveCol onRemoveCol={handleRemoveCol} />
+      <SelectColor/>
       <table className="table">
         <tbody>
           {tableData.map((row, rowIndex) => (
