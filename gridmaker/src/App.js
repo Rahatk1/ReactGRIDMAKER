@@ -10,6 +10,12 @@ function App()
 {
   const [tableData, setTableData] = useState([]); // a state variable tableData (initialized as empty array)
 
+
+  // i think i should use state for the color selection
+  const [colorChoice, setColor] = useState("#FFFFFF");
+
+
+
   const handleAddRow = () => //called when addrow is clicked, same explanation for the rest so I won't repeat
   { 
     if (tableData.length === 0) //ADDED THIS ONE TODAY - this checks if tabledata is empty like there are no rows yet
@@ -54,11 +60,11 @@ function App()
     }
   };
 
-  const handleSelectColor = () =>
+  const handleSelectColor = (event) =>
   {
-    // to be handle to have a prop be sent to handle the choice the user picks
+    setColor(event.target.value)
+    console.log(colorChoice, typeof(colorChoice), " inside the handler");
   } 
-  
   
   return (
     <div>
@@ -66,7 +72,7 @@ function App()
       <AddCol onAddCol={handleAddCol} />
       <RemoveRow onRemoveRow={handleRemoveRow} />
       <RemoveCol onRemoveCol={handleRemoveCol} />
-      <SelectColor/>
+      <SelectColor value={colorChoice} onChange={handleSelectColor}/>
       <table className="table">
         <tbody>
           {tableData.map((row, rowIndex) => (

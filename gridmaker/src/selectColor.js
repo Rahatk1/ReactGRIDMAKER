@@ -1,9 +1,10 @@
 import React from "react";
 
-function SelectColor() {
+function SelectColor(props) {
+
     return (
         <div>
-             <input type="color" id="colorPicker"></input>
+             <input type="color" value={props.value} onChange={props.onChange}></input>
         </div>
     )
 }
