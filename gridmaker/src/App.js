@@ -4,7 +4,7 @@ import AddRow from './addRow';
 import AddCol from './addCol';
 import RemoveRow from './removeRow';
 import RemoveCol from './removeCol';
-import SelectColor from './selectColor';
+import RetrieveColor from "./retrieveColor";
 
 function App() 
 {
@@ -60,10 +60,9 @@ function App()
     }
   };
 
-  const handleSelectColor = (event) =>
+  const handleRetrieveColor = (event) =>
   {
     setColor(event.target.value)
-    console.log(colorChoice, typeof(colorChoice), " inside the handler");
   } 
   
   return (
@@ -72,7 +71,7 @@ function App()
       <AddCol onAddCol={handleAddCol} />
       <RemoveRow onRemoveRow={handleRemoveRow} />
       <RemoveCol onRemoveCol={handleRemoveCol} />
-      <SelectColor value={colorChoice} onChange={handleSelectColor}/>
+      <RetrieveColor value={colorChoice} onChange={handleRetrieveColor}/>
       <table className="table">
         <tbody>
           {tableData.map((row, rowIndex) => (
