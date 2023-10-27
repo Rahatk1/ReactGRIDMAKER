@@ -4,7 +4,8 @@ import AddRow from './addRow';
 import AddCol from './addCol';
 import RemoveRow from './removeRow';
 import RemoveCol from './removeCol';
-import RetrieveColor from "./retrieveColor";
+import SelectColor from './selectColor';
+import FillAllCells from './FillAllCells';
 
 function App() 
 {
@@ -60,27 +61,37 @@ function App()
     }
   };
 
-  const handleRetrieveColor = (event) =>
-  {
-    setColor(event.target.value)
-  } 
-  
+  const handleSelectColor = (event) => {
+    setColor(event.target.value);
+  };
+
+  // Color in all cells in the grid
+  const handleFillAllCells = () => {
+    const newTableData = tableData.map(row => row.map(cell => ({ ...cell, color: colorChoice }))); // This row basically updates the color of all cells in the table to the currently selected
+    setTableData(newTableData); // Update the state component
+  };
+
+
+
   return (
     <div>
       <AddRow onAddRow={handleAddRow} />
       <AddCol onAddCol={handleAddCol} />
       <RemoveRow onRemoveRow={handleRemoveRow} />
       <RemoveCol onRemoveCol={handleRemoveCol} />
-      <RetrieveColor value={colorChoice} onChange={handleRetrieveColor}/>
+      <SelectColor value={colorChoice} onChange={handleSelectColor} />
+      <FillAllCells onFillAllCells={handleFillAllCells} />
+
+
+
+
+     
       <table className="table">
         <tbody>
           {tableData.map((row, rowIndex) => (
-            // Map through the tableData array to create rows. also for the above lines ur basically rendering the components & passing handleAddXYZ as a prop
             <tr key={rowIndex}>
               {row.map((cell, cellIndex) => (
-                // Map thru each row to create cells
-                <td key={cellIndex} className={cell}></td>
-                // not rlly sure what this does but web site gives a bunch of errors without it
+                <td key={cellIndex} style={{ backgroundColor: cell.color, width: '34px', height: '34px' }}></td>
               ))}
             </tr>
           ))}
@@ -89,5 +100,6 @@ function App()
     </div>
   );
 }
+
 
 export default App; // Exportapp comp
