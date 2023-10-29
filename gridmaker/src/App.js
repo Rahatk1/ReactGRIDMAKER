@@ -13,11 +13,8 @@ function App()
 {
   const [tableData, setTableData] = useState([]); // a state variable tableData (initialized as empty array)
 
-
   // i think i should use state for the color selection
   const [colorChoice, setColor] = useState("#FFFFFF");
-
-
 
   const handleAddRow = () => //called when addrow is clicked, same explanation for the rest so I won't repeat
   { 
@@ -97,11 +94,14 @@ function App()
       })
     );
     setTableData(newTableData); //update as per usual
-  };  //Removes all color
+  };  
+  
+  //Removes all color
   const handleRemoveColor = () => {
     const clearedTableData = tableData.map(row => row.map(cell => ({ ...cell, color: '#FFFFFF' }))); // Set all cell colors to white
     setTableData(clearedTableData); //update
   };
+
   return (
     <div>
       <AddRow onAddRow={handleAddRow} />
@@ -127,6 +127,5 @@ function App()
     </div>
   );
 }
-
 
 export default App; // Exportapp comp
