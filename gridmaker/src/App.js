@@ -86,7 +86,8 @@ function App()
     const newTableData = tableData.map((row) => //iterate thru each row
       row.map((cell) => //in each row iterate thru each cell
       {
-        if (!cell.color) //the ! made me feel so smart fr but anyways this is like if the cell color is null or not there aka uncolored
+        if (!cell.color || cell.color === "#FFFFFF") //the ! made me feel so smart fr but anyways this is like if the cell color is null or not there aka uncolored
+        //update to above condition, rahats remove color updates cell colors to white so fill uncolor should now also be able to color in cells that are white now too
         {
           return { ...cell, color: colorChoice }; //update color based on colorchocie
         }
