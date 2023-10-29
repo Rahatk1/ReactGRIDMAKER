@@ -6,6 +6,7 @@ import RemoveRow from './removeRow';
 import RemoveCol from './removeCol';
 import SelectColor from './selectColor';
 import FillAllCells from './FillAllCells';
+import FillAllUncolored from './FillAllUncolored';
 
 function App() 
 {
@@ -82,6 +83,20 @@ function App()
     setTableData(updatedTableData);
   };
   
+  const handleFillAllUncoloredCells = () => 
+  {
+    const newTableData = tableData.map((row) => //iterate thru each row
+      row.map((cell) => //in each row iterate thru each cell
+      {
+        if (!cell.color) //the ! made me feel so smart fr but anyways this is like if the cell color is null or not there aka uncolored
+        {
+          return { ...cell, color: colorChoice }; //update color based on colorchocie
+        }
+        return cell;
+      })
+    );
+    setTableData(newTableData); //update as per usual
+  };
 
   return (
     <div>
@@ -91,6 +106,7 @@ function App()
       <RemoveCol onRemoveCol={handleRemoveCol} />
       <SelectColor value={colorChoice} onChange={handleSelectColor} />
       <FillAllCells onFillAllCells={handleFillAllCells} />
+      <FillAllUncolored onFillAllUncoloredCells={handleFillAllUncoloredCells} />
 
       <table className="table">
         <tbody>
