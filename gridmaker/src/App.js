@@ -72,6 +72,7 @@ function App()
     setTableData(newTableData); // Update the state component
   };
 
+  //Removes all color
   const handleRemoveColor = () => {
     const clearedTableData = tableData.map(row => row.map(cell => ({ ...cell, color: '#FFFFFF' }))); // Set all cell colors to white
     setTableData(clearedTableData); //update
