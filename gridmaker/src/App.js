@@ -6,6 +6,7 @@ import RemoveRow from './removeRow';
 import RemoveCol from './removeCol';
 import SelectColor from './selectColor';
 import FillAllCells from './FillAllCells';
+import RemoveColor from './RemoveColor'; // Import the new component
 
 function App() 
 {
@@ -71,8 +72,10 @@ function App()
     setTableData(newTableData); // Update the state component
   };
 
-
-
+  const handleRemoveColor = () => {
+    const clearedTableData = tableData.map(row => row.map(cell => ({ ...cell, color: '#FFFFFF' }))); // Set all cell colors to white
+    setTableData(clearedTableData); //update
+  };
   return (
     <div>
       <AddRow onAddRow={handleAddRow} />
@@ -81,7 +84,7 @@ function App()
       <RemoveCol onRemoveCol={handleRemoveCol} />
       <SelectColor value={colorChoice} onChange={handleSelectColor} />
       <FillAllCells onFillAllCells={handleFillAllCells} />
-
+      <RemoveColor onRemoveAllColors={handleRemoveColor} />
 
 
 
