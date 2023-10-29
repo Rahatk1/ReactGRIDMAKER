@@ -71,7 +71,17 @@ function App()
     setTableData(newTableData); // Update the state component
   };
 
-
+  // handler func to render user color choice to an click event
+  const handleCellClick = (clickedRow, clickedCell) => {
+    const updatedTableData = tableData.map((row, rowIndex) =>
+      rowIndex === clickedRow ? 
+        row.map((cell, cellIndex) =>
+          cellIndex === clickedCell ? { ...cell, color: colorChoice } : cell
+        ) : row
+    );
+    setTableData(updatedTableData);
+  };
+  
 
   return (
     <div>
@@ -82,16 +92,13 @@ function App()
       <SelectColor value={colorChoice} onChange={handleSelectColor} />
       <FillAllCells onFillAllCells={handleFillAllCells} />
 
-
-
-
-     
       <table className="table">
         <tbody>
           {tableData.map((row, rowIndex) => (
             <tr key={rowIndex}>
               {row.map((cell, cellIndex) => (
-                <td key={cellIndex} style={{ backgroundColor: cell.color, width: '34px', height: '34px' }}></td>
+                <td key={cellIndex} style={{ backgroundColor: cell.color, width: '34px', height: '34px' }}
+                onClick={() => handleCellClick(rowIndex, cellIndex)}></td>
               ))}
             </tr>
           ))}
