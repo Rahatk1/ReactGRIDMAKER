@@ -10,7 +10,7 @@ import FillAllUncolored from './FillAllUncolored';
 
 function App() 
 {
-  const [tableData, setTableData] = useState([[]]); // a state variable tableData (initialized as empty array)
+  const [tableData, setTableData] = useState([]); // a state variable tableData (initialized as empty array)
 
 
   // i think i should use state for the color selection
