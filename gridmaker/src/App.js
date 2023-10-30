@@ -13,11 +13,8 @@ function App()
 {
   const [tableData, setTableData] = useState([]); // a state variable tableData (initialized as empty array)
 
-
   // i think i should use state for the color selection
   const [colorChoice, setColor] = useState("#FFFFFF");
-
-
 
   const handleAddRow = () => //called when addrow is clicked, same explanation for the rest so I won't repeat
   { 
@@ -89,7 +86,8 @@ function App()
     const newTableData = tableData.map((row) => //iterate thru each row
       row.map((cell) => //in each row iterate thru each cell
       {
-        if (!cell.color) //the ! made me feel so smart fr but anyways this is like if the cell color is null or not there aka uncolored
+        if (!cell.color || cell.color === "#FFFFFF") //the ! made me feel so smart fr but anyways this is like if the cell color is null or not there aka uncolored
+        //update to above condition, rahats remove color updates cell colors to white so fill uncolor should now also be able to color in cells that are white now too
         {
           return { ...cell, color: colorChoice }; //update color based on colorchocie
         }
@@ -97,11 +95,14 @@ function App()
       })
     );
     setTableData(newTableData); //update as per usual
-  };  //Removes all color
+  };  
+  
+  //Removes all color
   const handleRemoveColor = () => {
     const clearedTableData = tableData.map(row => row.map(cell => ({ ...cell, color: '#FFFFFF' }))); // Set all cell colors to white
     setTableData(clearedTableData); //update
   };
+
   return (
     <div>
       <AddRow onAddRow={handleAddRow} />
@@ -127,6 +128,5 @@ function App()
     </div>
   );
 }
-
 
 export default App; // Exportapp comp
