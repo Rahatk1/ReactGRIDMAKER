@@ -104,28 +104,33 @@ function App()
   };
 
   return (
-    <div>
-      <AddRow onAddRow={handleAddRow} />
-      <AddCol onAddCol={handleAddCol} />
-      <RemoveRow onRemoveRow={handleRemoveRow} />
-      <RemoveCol onRemoveCol={handleRemoveCol} />
-      <SelectColor value={colorChoice} onChange={handleSelectColor} />
-      <FillAllCells onFillAllCells={handleFillAllCells} />
-      <RemoveColor onRemoveAllColors={handleRemoveColor} />      <FillAllUncolored onFillAllUncoloredCells={handleFillAllUncoloredCells} />
-
+    <>
+    <h2>Assignment#4 React Gridmaker</h2>
+    <h4>Group: Lally Enthusiasts</h4>
+      <div className="container">
+        <AddRow onAddRow={handleAddRow} />
+        <AddCol onAddCol={handleAddCol} />
+        <RemoveRow onRemoveRow={handleRemoveRow} />
+        <RemoveCol onRemoveCol={handleRemoveCol} />
+        <SelectColor value={colorChoice} onChange={handleSelectColor} />
+        <FillAllCells onFillAllCells={handleFillAllCells} />
+        <RemoveColor onRemoveAllColors={handleRemoveColor} />      <FillAllUncolored onFillAllUncoloredCells={handleFillAllUncoloredCells} />
+      </div>
+      
       <table className="table">
-        <tbody>
-          {tableData.map((row, rowIndex) => (
-            <tr key={rowIndex}>
-              {row.map((cell, cellIndex) => (
-                <td key={cellIndex} style={{ backgroundColor: cell.color, width: '34px', height: '34px' }}
-                onClick={() => handleCellClick(rowIndex, cellIndex)}></td>
-              ))}
-            </tr>
-          ))}
+      <tbody>
+        {tableData.map((row, rowIndex) => (
+          <tr key={rowIndex}>
+            {row.map((cell, cellIndex) => (
+              <td key={cellIndex} style={{ border: '1px solid black', backgroundColor: cell.color, width: '34px', height: '34px' }}
+              onClick={() => handleCellClick(rowIndex, cellIndex)}></td>
+            ))}
+          </tr>
+        ))}
         </tbody>
       </table>
-    </div>
+    </>
+
   );
 }
 
