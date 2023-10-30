@@ -55,7 +55,38 @@ body {
   margin: 20px;
   padding: 0;
 }
-
+button{
+  padding: 6px 8px;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0px 1px 4px rgba(0,0,0,0.25);
+  font-weight: bold;
+  background-color: hwb(0 86% 13%);
+  transition: opacity .25s;
+}
+button:hover{
+  background-color: rgb(168, 167, 167)
+}
+button:active{
+opacity: 0.8;
+background-color: rgb(233, 211, 211)
+}
+div{
+  display: inline-block;
+}
+table{
+  box-shadow: 0px 2px 8px rgba(0,0,0,0.65);
+  border: 1px solid black;
+}
+td{
+  border: 2px solid black;
+}
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
 .square {
   background: #fff;
   border: 1px solid #999;
