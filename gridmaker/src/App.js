@@ -48,7 +48,7 @@ function App()
 
   const handleRemoveCol = () => 
   {
-    if (tableData[0].length > 1) //are there more than one column in the table rn? if yes then enter
+    if (tableData.length > 1) //are there more than one column in the table rn? if yes then enter, why the [0]? its no longer needed, it was causing the error but now it checks the whole array
     {
       const newTableData = tableData.map(row => [...row.slice(0, -1)]); //new table data same expl as the rest, .map iterates thru the rows, spread operator with the slice creates new row with the last cell removed aka removes a column
       setTableData(newTableData); //update
