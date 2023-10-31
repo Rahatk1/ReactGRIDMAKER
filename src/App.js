@@ -16,25 +16,46 @@ function App()
   // i think i should use state for the color selection
   const [colorChoice, setColor] = useState("#FFFFFF");
 
-  const handleAddRow = () => //called when addrow is clicked, same explanation for the rest so I won't repeat
-  { 
-    if (tableData.length === 0) //ADDED THIS ONE TODAY - this checks if tabledata is empty like there are no rows yet
-    { 
-      setTableData([['square']]);
-    } 
+  // const handleAddRow = () => //called when addrow is clicked, same explanation for the rest so I won't repeat
+  // { 
+  //   if (tableData.length === 0) //ADDED THIS ONE TODAY - this checks if tabledata is empty like there are no rows yet
+  //   { 
+  //     setTableData([['square']]);
+  //   } 
     
-    else //if ur here that means there ARE rows in the grid
-    {
-      setTableData([...tableData, Array(tableData[0].length).fill('square')]); 
-      //tableData[0].length gets number of cells int he first row of the grid
-      //then blah blah.fill('square') creates array with same amount of cells as the first row & fills them all with 'square'
+  //   else //if ur here that means there ARE rows in the grid
+  //   {
+  //     setTableData([...tableData, Array(tableData[0].length).fill('square')]); 
+  //     //tableData[0].length gets number of cells int he first row of the grid
+  //     //then blah blah.fill('square') creates array with same amount of cells as the first row & fills them all with 'square'
+  //   }
+  // };
+
+  // const handleAddCol = () => 
+  // {
+  //   const newTableData = tableData.map(row => [...row, 'square']); // new array where ur adding a 'square' value to each row aka a column
+  //   setTableData(newTableData); //Update tableData state so it now includes the new column
+  // };
+
+  const handleAddRow = () => {
+    if (tableData.length === 0) {
+      setTableData([['square']]);
+    } else {
+      // Add a new row with the same number of columns as the previous row
+      const newRow = Array(tableData[0].length).fill('square');
+      setTableData([...tableData, newRow]);
     }
   };
-
-  const handleAddCol = () => 
-  {
-    const newTableData = tableData.map(row => [...row, 'square']); // new array where ur adding a 'square' value to each row aka a column
-    setTableData(newTableData); //Update tableData state so it now includes the new column
+  
+  const handleAddCol = () => {
+    if (tableData.length === 0) {
+      // If there are no rows, add a new column and a new row
+      setTableData([['square']]);
+    } else {
+      // Add a new column to each existing row
+      const newTableData = tableData.map(row => [...row, 'square']);
+      setTableData(newTableData);
+    }
   };
 
   const handleRemoveRow = () => 
@@ -48,7 +69,7 @@ function App()
 
   const handleRemoveCol = () => 
   {
-    if (tableData.length > 1) //are there more than one column in the table rn? if yes then enter, why the [0]? its no longer needed, it was causing the error but now it checks the whole array
+    if (tableData.length > 0) //are there more than one column in the table rn? if yes then enter, why the [0]? its no longer needed, it was causing the error but now it checks the whole array
     {
       const newTableData = tableData.map(row => [...row.slice(0, -1)]); //new table data same expl as the rest, .map iterates thru the rows, spread operator with the slice creates new row with the last cell removed aka removes a column
       setTableData(newTableData); //update
@@ -107,7 +128,7 @@ function App()
     <>
     <h2>Assignment#4 React Gridmaker</h2>
     <h4>Group: Lally Enthusiasts</h4>
-      <div className="container">
+    <div className="container">
         <AddRow onAddRow={handleAddRow} />
         <AddCol onAddCol={handleAddCol} />
         <RemoveRow onRemoveRow={handleRemoveRow} />
@@ -116,7 +137,7 @@ function App()
         <FillAllCells onFillAllCells={handleFillAllCells} />
         <RemoveColor onRemoveAllColors={handleRemoveColor} />      
         <FillAllUncolored onFillAllUncoloredCells={handleFillAllUncoloredCells} />
-      </div>
+    </div>
       
       <table className="table">
       <tbody>

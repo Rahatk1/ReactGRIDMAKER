@@ -4,7 +4,6 @@
 
 body {
   font-family: sans-serif;
-  margin: 20px;
   padding: 0;
 }
 
@@ -41,6 +40,9 @@ h6 {
 code {
   font-size: 1.2em;
 }
+h2, h4{
+  display: block;
+}
 
 ul {
   padding-inline-start: 20px;
@@ -52,8 +54,8 @@ ul {
 
 body {
   font-family: sans-serif;
-  margin: 20px;
-  padding: 0;
+  padding: 10px;
+  width: 100%;
 }
 button{
   padding: 6px 8px;
@@ -82,11 +84,14 @@ td{
   border: 2px solid black;
 }
 .container{
+  width: 98vw;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  
+
 }
+
 .square {
   background: #fff;
   border: 1px solid #999;
