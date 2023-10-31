@@ -114,7 +114,8 @@ function App()
         <RemoveCol onRemoveCol={handleRemoveCol} />
         <SelectColor value={colorChoice} onChange={handleSelectColor} />
         <FillAllCells onFillAllCells={handleFillAllCells} />
-        <RemoveColor onRemoveAllColors={handleRemoveColor} />      <FillAllUncolored onFillAllUncoloredCells={handleFillAllUncoloredCells} />
+        <RemoveColor onRemoveAllColors={handleRemoveColor} />      
+        <FillAllUncolored onFillAllUncoloredCells={handleFillAllUncoloredCells} />
       </div>
       
       <table className="table">
