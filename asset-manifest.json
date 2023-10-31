@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ReactGRIDMAKER/static/css/main.fbe02109.css",
+    "main.js": "/ReactGRIDMAKER/static/js/main.b42f335d.js",
+    "index.html": "/ReactGRIDMAKER/index.html",
+    "main.fbe02109.css.map": "/ReactGRIDMAKER/static/css/main.fbe02109.css.map",
+    "main.b42f335d.js.map": "/ReactGRIDMAKER/static/js/main.b42f335d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fbe02109.css",
+    "static/js/main.b42f335d.js"
+  ]
+}
