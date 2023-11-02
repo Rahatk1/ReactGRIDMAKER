@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/ReactGRIDMAKER/static/css/main.047f6190.css",
-    "main.js": "/ReactGRIDMAKER/static/js/main.46f8b414.js",
+    "main.js": "/ReactGRIDMAKER/static/js/main.97d79645.js",
     "index.html": "/ReactGRIDMAKER/index.html",
     "main.047f6190.css.map": "/ReactGRIDMAKER/static/css/main.047f6190.css.map",
-    "main.46f8b414.js.map": "/ReactGRIDMAKER/static/js/main.46f8b414.js.map"
+    "main.97d79645.js.map": "/ReactGRIDMAKER/static/js/main.97d79645.js.map"
   },
   "entrypoints": [
     "static/css/main.047f6190.css",
-    "static/js/main.46f8b414.js"
+    "static/js/main.97d79645.js"
   ]
 }
