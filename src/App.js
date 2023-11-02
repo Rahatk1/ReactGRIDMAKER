@@ -39,6 +39,7 @@ function App()
 
   const handleAddRow = () => {
     if (tableData.length === 0) {
+      // If there are no rows, add a new row with a single column
       setTableData([['square']]);
     } else {
       // Add a new row with the same number of columns as the previous row
@@ -46,6 +47,9 @@ function App()
       setTableData([...tableData, newRow]);
     }
   };
+  
+
+
   
   const handleAddCol = () => {
     if (tableData.length === 0) {
@@ -67,20 +71,15 @@ function App()
     }
   };
 
-  const handleRemoveCol = () => 
-  {
-    if (tableData.length > 0) //are there more than one column in the table rn? if yes then enter, why the [0]? its no longer needed, it was causing the error but now it checks the whole array
-    {
-      const newTableData = tableData.map(row => [...row.slice(0, -1)]); //new table data same expl as the rest, .map iterates thru the rows, spread operator with the slice creates new row with the last cell removed aka removes a column
-      setTableData(newTableData); //update
-    } 
-    
-    else //if there is only one column left to remove in the grid, just update it so it goes back to an empty grid! this fixed the addRow edge case
-    {
-      setTableData([]); //update state to empty grid
+  const handleRemoveCol = () => {
+    if (tableData.length > 0 && tableData[0].length > 1) {
+      const newTableData = tableData.map(row => [...row.slice(0, -1)]);
+      setTableData(newTableData);
+    } else {
+      // Handle the case when there are no columns left
+      setTableData([]);
     }
   };
-
   const handleSelectColor = (event) => {
     setColor(event.target.value);
   };
